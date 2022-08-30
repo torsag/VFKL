@@ -1,5 +1,13 @@
 # VFKL
 "Veileder For Kvalitet i Læremidler"
+Veileder For Kvalitet i Læremidler er en tjenste laget av UDIR basert på altinn.studio/altinn 3.0 referansesystem. (https://github.com/Altinn/AltinnApp/) Selve tjenesten kan du finne:https://www.udir.no/kvalitet-og-kompetanse/laremidler/kvalitetskriterier-for-laremidler/
+
+Dette er Udir sin tjeneste for vurdering av kvalitet i læremidler. Her kan du som er skoleleder eller skoleeier invitere lærere til å gjøre en vurdering. Du blir bedt om å velge hvilket læremiddel som skal vurderes, hvilken læreplan det skal vurderes for og hvem du ønsker å invitere til å gjøre vurderingen. Etter at de inviterte lærerne har gjennomført vurdering, får du se resultatene i en samlevisning som kan brukes for drøfting og valg av læremiddel.
+
+En hjelpeside for veilederen kan finnes her: 
+https://www.udir.no/kvalitet-og-kompetanse/laremidler/kvalitetskriterier-for-laremidler/veiledere-for-kvalitet-i-laremidler/#a163161
+
+
 
 ## VFKL Core System
 
