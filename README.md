@@ -1,6 +1,6 @@
 # VFKL
 "Veileder For Kvalitet i Læremidler"
-Veileder For Kvalitet i Læremidler er en tjenste laget av UDIR basert på altinn.studio/altinn 3.0 referansesystem. (https://github.com/Altinn/AltinnApp/) Selve tjenesten kan du finne:https://www.udir.no/kvalitet-og-kompetanse/laremidler/kvalitetskriterier-for-laremidler/
+Veileder For Kvalitet i Læremidler er en tjenste laget av UDIR basert på altinn.studio/altinn 3.0 [referansesystem](https://github.com/Altinn/AltinnApp/). Selve tjenesten kan du finne:https://www.udir.no/kvalitet-og-kompetanse/laremidler/kvalitetskriterier-for-laremidler/
 
 Dette er Udir sin tjeneste for vurdering av kvalitet i læremidler. Her kan du som er skoleleder eller skoleeier invitere lærere til å gjøre en vurdering. Du blir bedt om å velge hvilket læremiddel som skal vurderes, hvilken læreplan det skal vurderes for og hvem du ønsker å invitere til å gjøre vurderingen. Etter at de inviterte lærerne har gjennomført vurdering, får du se resultatene i en samlevisning som kan brukes for drøfting og valg av læremiddel.
 
@@ -9,35 +9,38 @@ https://www.udir.no/kvalitet-og-kompetanse/laremidler/kvalitetskriterier-for-lar
 
 
 
-## VFKL Core System
+## VFKL Core System (Kjernesystem)
+VFKL core system is built to receive data from altinn3.0. We will consume the events produced by Altinn 3.0 for the application to fetch the data. To generate events for our app, we must first activate the event generation.How to activate generation of events in our application can be found [here](https://docs.altinn.studio/app/development/configuration/events/#activate-generation-of-events-in-your-application)
 
+Core system will react to events pushed by altinn 3.0 and fetch data from altinn platformen. 
 
-### Getting Started
+## Getting Started
+Following instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-### Clone the VFKL repository
+## Clone the VFKL repository
 
 Git clone https://github.com/Utdanningsdirektoratet/VFKL.git
 	
-### Prerequisites
+## Prerequisites
 
 1. .Net 6.0
 2. For local development : Postgres on docker (It is also possible to install postgres directly)
-	a. Install docker desktop from here https://docs.docker.com/desktop/windows/install/
-	b. Run <<docker run -d -p 5432:5432 --name vfkl POSTGRES_PASSWORD=Test1234 vfkladmin>> to get the postgres database for vfkl up and running in the local development environment
+	1. Install docker desktop from here https://docs.docker.com/desktop/windows/install/
+	2. Run <<docker run -d -p 5432:5432 --name vfkl POSTGRES_PASSWORD=Test1234 vfkladmin>> to get the postgres database for vfkl up and running in the local development environment
 3. Azure function core tools v4
-		a. Install azure function core tools from here https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local?tabs=v4%2Cwindows%2Ccsharp%2Cportal%2Cbash
+	-	Install azure function core tools from here https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local?tabs=v4%2Cwindows%2Ccsharp%2Cportal%2Cbash
 4. pgAdmin - Tool to manage the postgres database
-	a. Install pgAdmin from here https://www.pgadmin.org/download/
-5. Microsoft recommends that we use Azurite for local Azure storage development. Azurite can be downloaded from
+	- Install pgAdmin from here https://www.pgadmin.org/download/
+5. Microsoft recommends that we use Azurite for local Azure storage development. Azurite is a storage emulator. Azurite is automatically avaialable with Visualstudio 2022. If not, Azurite can be downloaded from
 	
 	https://docs.microsoft.com/en-us/azure/storage/common/storage-use-azurite?tabs=visual-studio 
 6. Azure Storage Explorer - This is used to view the local blob container, queue. It can also be used to manage the resources in azure.
-	a. It can be installed from here https://azure.microsoft.com/en-us/features/storage-explorer/#overview
+	- It can be installed from here https://azure.microsoft.com/en-us/features/storage-explorer/#overview
 7. Postman - This is used to test the api
-	a. You can either use postman web or use postman desktop
+	- You can either use postman web or use postman desktop
 8. A code editor - Visual studio/Visual studio code
 
-### Connect to the database using pgadmin
+## Connect to the database using pgadmin
 
 1. Open pgAdmin
 2. Click on create-->server. You will see the following screen
@@ -56,7 +59,7 @@ Git clone https://github.com/Utdanningsdirektoratet/VFKL.git
 7. Click on vfkl-local--->Databases
 8. Now you can see the system database postgres.
 
-### Setup database
+## Setup database
 
 1. To setup the database for the first time, create a database by running the following sql script
 	
@@ -65,7 +68,15 @@ Git clone https://github.com/Utdanningsdirektoratet/VFKL.git
 	The sql script can be run by opening the query tool window. To open the query tool window, right click on the postgres database and select query tool.
 2. Run the cleandbdeploy.sql script that is found in deployment folder. This script will create the required schemas, tables and stored procedures
 
-### Setup the local settings
+## Setup Local Storage
+Local storage can also be managed using Azure storage explorer tool. 
+- Open the Azure storage explorer. You will see an explorer in the left. Expand "Local & Attached", then Emulator
+![azure storage explorer, Storage Emulator](/images/storageexplorer.png)
+- Now you can see Blob containers, queues, tables if your emulator is running
+![azure storage explorer, Storage Emulator](/images/storageexplorer-blobcontainers.png)
+- Right click on the blob container and create a blob container "inbound"
+
+## Setup the local settings
 
 We need to setup a local settings file that will contain all the environment variable, settings needed to run the application locally. Add a new file called lcoal.settings.json
 
@@ -91,14 +102,13 @@ We need to setup a local settings file that will contain all the environment var
 		}
 	}
 
-	The Blobendpoint, accountname, accountkey are configured with local storage emulator connections.
+	The Blobendpoint, accountname, accountkey are configured with local storage emulator connections. By default, they are configured with the above values.
 
-### Run the application locally
+## Run the application locally
 
 The application can be run locally either 
-		a. by pressing F5 from visual studio or 
-		b. Navigate to src/vfklcore
-		c. Run <<func start>> 
+-	by pressing F5 from visual studio or 
+-	Navigate to src/vfklcore and then Run <<func start>> 
 
 ### Test the application locally
 
@@ -127,7 +137,7 @@ The main trigger for the function is a http trigger and can be triggered by send
 ### Verify the data locally
 Once the function is run, the received data can be verified by checking the local blob containers and the database.
 
-#### How to verify data in Blob?
+#### Verify data in Blob
 - Open the Azure storage explorer. You will see an explorer in the left. Expand "Local & Attached", then Emulator
 ![azure storage explorer, Storage Emulator](/images/storageexplorer.png)
 - Now you can see Blob containers, queues, tables if your emulator is running
@@ -139,5 +149,5 @@ Once the function is run, the received data can be verified by checking the loca
 - You will see folders with guid as folder name. Each folder represent an instance that was sent in by user
 ![azure storage explorer, Storage Emulator](/images/storageexplorer-vfklcontent.png)
 
-#### How to verify data in Postgres
+#### Verify data in Postgres
 You can use pgadmin tool to connect to the local database and query the data to verify.
