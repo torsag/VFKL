@@ -1,10 +1,8 @@
 ### PREREQUISITS
 # AZ CLI
-# HELM 3
 # AZ Login
 # azure-functions-core-tools https://www.npmjs.com/package/azure-functions-core-tools
 # az extension add -n application-insights #Add support for Application Insight for AzureCLI
-#
 
 ### Example usage for VFKL in TT02
 #  .\provision_VFKLCore.ps1 -subscription Udir-vfkl -vfklEnvironment test -maskinportenclient [INSERT MASKINPORTEN CLIENTID] -maskinportenclientcert [PATH TO CERT] -maskinportenclientcertpwd [INSERT PASSOWORD FOR CERT] -maskinportenuri https://ver2.maskinporten.no -platformuri https://platform.tt02.altinn.no/ -appsuri https://udir.apps.tt02.altinn.no/ -sendgridapikey [key] -emailurl https://udir.apps.tt02.altinn.no/udir/vfkl/GroupAssessment?id=
@@ -17,7 +15,7 @@ param (
   [Parameter(Mandatory=$True)][string]$subscription,   
   [Parameter(Mandatory=$True)][string]$vfklEnvironment, 
   [Parameter(Mandatory=$True)][string]$maskinportenclient, 
-    [Parameter(Mandatory=$True)][string]$deployenvironment,
+  [Parameter(Mandatory=$True)][string]$deployenvironment,
   # [Parameter(Mandatory=$True)][string]$maskinportenclientcert, 
   # [Parameter(Mandatory=$True)][string]$maskinportenclientcertpwd,
   # [Parameter(Mandatory=$True)][string]$maskinportenclientcertname,
@@ -39,6 +37,7 @@ param (
 ### Set subscription
 az account set --subscription $subscription
 
+#define naming for resources
 $vfklResourceGroupName = "$resourcePrefix-$vfklEnvironment-rg"
 $keyvaultname = "vfkl-$vfklEnvironment-keyvault"
 $maskinportenclientsecretname = "vfkl-$vfklEnvironment-jwk-kvsecret"
@@ -66,15 +65,14 @@ $blobendpoint = az storage account show --name $storageAccountName --resource-gr
 
 
 Write-Output "Create KeyVault"
+#Uncomment this when provisioning the keyvault for the first time
 #$keyvault = az keyvault create --location $location --name $keyvaultname --resource-group $vfklResourceGroupName
 #$secretId = az keyvault secret --vault-name $keyvaultname --name $secretname --value $maskinportenclientsecretvalue
 #$databasesecretId = az keyvault secret --vault-name $keyvaultname --name $databasesecretname --value $databasesecretvalue
+
+Write-Output "Get the keyvault url and id"
 $KeyvaultID = az keyvault show --name $keyvaultname --resource-group $vfklResourceGroupName --query id --output tsv
 $vaultUri = az keyvault show --name $keyvaultname --resource-group $vfklResourceGroupName --query properties.vaultUri --output tsv
-
-
-#Write-Output "Import Maskinporten cert"
-#az keyvault certificate import --vault-name $keyvaultname -n maskinportenclientcert -f $maskinportenclientcert --password $maskinportenclientcertpwd
 
 Write-Output "Create Function App"
 az functionapp create --resource-group $vfklResourceGroupName --consumption-plan-location $location --runtime dotnet-isolated --functions-version 4 --name $functionName --storage-account $storageAccountName
@@ -99,7 +97,6 @@ az functionapp config appsettings set --name $functionname --resource-group $vfk
 az functionapp config appsettings set --name $functionname --resource-group $vfklResourceGroupName --settings "VFKLCoreSettings:TestMode=true"
 az functionapp config appsettings set --name $functionname --resource-group $vfklResourceGroupName --settings "KeyVault:KeyVaultURI=$vaultUri"
 az functionapp config appsettings set --name $functionname --resource-group $vfklResourceGroupName --settings "KeyVault:MaskinportenClientSecretId=$maskinportenclientsecretname"
-# az functionapp config appsettings set --name $functionname --resource-group $vfklResourceGroupName --settings "KeyVault:MaskinPortenCertSecretId=$maskinportenclientcertname"
 az functionapp config appsettings set --name $functionname --resource-group $vfklResourceGroupName --settings "KEYVAULT_ENDPOINT=$vaultUri"
 az functionapp config appsettings set --name $functionname --resource-group $vfklResourceGroupName --settings "VFKLCoreSettings:EmailAccount=vfkl@udir.no"
 az functionapp config appsettings set --name $functionname --resource-group $vfklResourceGroupName --settings "VFKLCoreSettings:EmailAccountName=VFKL Invitasjon"
