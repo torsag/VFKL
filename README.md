@@ -102,7 +102,7 @@ We need to setup a local settings file that will contain all the environment var
 		}
 	}
 
-	The Blobendpoint, accountname, accountkey are configured with local storage emulator connections. By default, they are configured with the above values.
+The Blobendpoint, accountname, accountkey are configured with local storage emulator connections. By default, they are configured with the above values. The 	     MaskinPortenClientId is the client id that you can get from the samarbeidsportalen where you register a maskinporten client. The maskinportenkey is the publicprivate key pair that you receive from the samarbeidsportal which is then base64 encoded and and set in here.
 
 ## Run the application locally
 
