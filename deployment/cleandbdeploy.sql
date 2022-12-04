@@ -253,6 +253,12 @@ VALUES(1,'design','Design/hábmen', 1083),
 	  (4,'føringer','Føringar frå læreplanverket',2068),
 	  (5,'kvalitet','Utforming og tekstleg kvalitet',2068),
 	  (6,'kopling','Kopling til læreplanverket',2068);
+      (1,'hammoe','Hammoe/hammoedimmie',6203),
+	  (2,'pedagogisk','Pedagogeles jïh didaktihkeles kvaliteete',6203),
+	  (3,'learoesoejkesje','Åtnoe learoesoejkesje-vierhkeste',6203),
+	  (1,'design','Design/hábbmim',4155),
+	  (2,'pedagåvgålasj','Pedagåvgålasj ja didaktalasj kvalitiehtta',4155),
+	  (3,'oahppoplánajt','Gåktu oahppoplánajt adnet',4155);
 
 	  
 CREATE TABLE assessment.answertypetextresources(
@@ -270,16 +276,24 @@ CONSTRAINT fk_language_answertype
     );
 
 INSERT INTO assessment.answertypetextresources(answertype_id_fk, name, description, language_id_fk)
-VALUES(1,'heltenig','Helt enig', 1083),
-      (2,'delvisenig','Delvis enig',1083),
-      (3,'delvisuenig','Delvis uenig',1083),
-	  (4,'heltuenig','Helt uenig',1083),
-	  (5,'ikkeaktuelt','ønsker ikke å svare/ikke aktuelt',1083)
+VALUES(1,'heltenig','Áibbas ovttaoaivilis', 1083),
+      (2,'delvisenig','Belohahkii ovttaoaivilis',1083),
+      (3,'delvisuenig','Belohahkii sierramielalaš',1083),
+	  (4,'heltuenig','Áibbas sierramielalaš',1083),
+	  (5,'ikkeaktuelt','In hálit vástidit / ii áigeguovdil',1083)
 	  (1,'heltenig','Heilt enig', 2068),
       (2,'delvisenig','Delvis enig',2068),
       (3,'delvisuenig','Delvis uenig',2068),
 	  (4,'heltuenig','Heilt uenig',2068),
-	  (5,'ikkeaktuelt','Ønsker ikkje å svara/Ikkje aktuelt',2068);
+	  (5,'ikkeaktuelt','Ønsker ikkje å svara/Ikkje aktuelt',2068),
+      (1,'heltenig','Eevre sïemes', 6203),
+      (2,'delvisenig','Såemiesmearan sïemes',6203),
+      (3,'delvisuenig','Såemiesmearan ov-sïemes',6203),
+	  (4,'heltuenig','Eevre ov-sïemes',6203),
+      (1,'heltenig','Guorrasav ållu', 4155),
+      (2,'delvisenig','Guorrasav muhtem mudduj',4155),
+      (3,'delvisuenig','Iv ållu guorrasa',4155),
+	  (4,'heltuenig','Iv åvvånis guorrasa',4155);
 	  		  
 CREATE TABLE assessment.questiontextresources(
     text_id SERIAL PRIMARY KEY,
@@ -293,17 +307,17 @@ CREATE TABLE assessment.questiontextresources(
 		  
 INSERT INTO assessment.questiontextresources(question_id_fk, question, language_id_fk)
 VALUES
-      (1,'Jeg ønsker ikke å svare på denne kategorien',1083),
-      (1,'Jeg ønsker ikke å svare på denne kategorien',6203),
-      (1,'Jeg ønsker ikke å svare på denne kategorien',4155),
+      (1,'In hálit vástidit dán kategoriijas',1083),
+      (1,'Im sïjhth daam kategorijem vaestiedidh',6203),
+      (1,'Iv sidá dán kategorijjan vásstedit',4155),
 	  (1,'Ønsker ikkje å svare på denne kategorien',2068),
-      (2,'Jeg ønsker ikke å svare på denne kategorien',1083),
-      (2,'Jeg ønsker ikke å svare på denne kategorien',6203),
-      (2,'Jeg ønsker ikke å svare på denne kategorien',4155),
+      (2,'In hálit vástidit dán kategoriijas',1083),
+      (2,'Im sïjhth daam kategorijem vaestiedidh',6203),
+      (2,'Iv sidá dán kategorijjan vásstedit',4155),
 	  (2,'Ønsker ikkje å svare på denne kategorien',2068),
-      (3,'Jeg ønsker ikke å svare på denne kategorien',1083),
-      (3,'Jeg ønsker ikke å svare på denne kategorien',6203),
-      (3,'Jeg ønsker ikke å svare på denne kategorien',4155),
+      (3,'In hálit vástidit dán kategoriijas',1083),
+      (3,'Im sïjhth daam kategorijem vaestiedidh',6203),
+      (3,'Iv sidá dán kategorijjan vásstedit',4155),
 	  (3,'Ønsker ikkje å svare på denne kategorien',2068),                   
       (4,'Oahpponeavvu lea ulbmiljoavkku ohppiid mielas miellagiddevaš',1083),
 	  (4,'Læremiddelet blir opplevd som engasjerande for elevane i målgruppa.',2068),

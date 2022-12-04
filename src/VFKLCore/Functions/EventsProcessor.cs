@@ -284,7 +284,10 @@ namespace VFKLCore.Functions
                     if (invitation != null)
                     {
                         string assessmenttypeString = invitation.VurderingsType.ToLower(); // For use in email text
-                        if (assessmenttypeString == "allefag") { assessmenttypeString = "alle fag"; }
+                        if (assessmenttypeString == "allefag") 
+                        { 
+                            assessmenttypeString = "alle fag"; 
+                        }
 
                         await SaveGroupInvitation(invitation);
 
@@ -331,8 +334,8 @@ namespace VFKLCore.Functions
                             {
                                 invitedEmails.Append($"{epost}, ");
                             }
-                            string invitedEmailsTrimmed = invitedEmails.ToString().Trim().Trim(',');
 
+                            string invitedEmailsTrimmed = invitedEmails.ToString().Trim().Trim(',');
 
                             confirmation_body.Append("<h3>Din gruppevurdering er i gang!</h3><br/>");
                             confirmation_body.Append($"Dette er din bekreftelse på at invitasjoner til å vurdere læremiddelet \"{invitation.Læremiddel}\" er blitt sendt ut. <br/><br/>");
