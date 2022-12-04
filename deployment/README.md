@@ -18,9 +18,8 @@ The script has necessary comments for understanding.
 ### Run the script
 - Navigate to deployment folder in command line
 - Login to azure using **az login** command
-- Run the script f.example type **provision_VFKLCore.ps1** and press enter
+- Run the script f.example type **provision_VFKLCore.ps1** with  necessary inputs and press enter
 - The script will print the resource details as and when it is created.
-- 
 
 ### Verify in Azure
 Once the script is run successfully, login to azure and verify the necessary resources are created. You can go to your subscription and click on resources to verify that all the resources are available.
