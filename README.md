@@ -36,6 +36,7 @@ Git clone https://github.com/Utdanningsdirektoratet/VFKL.git
 	https://docs.microsoft.com/en-us/azure/storage/common/storage-use-azurite?tabs=visual-studio 
 6. Azure Storage Explorer - This is used to view the local blob container, queue. It can also be used to manage the resources in azure.
 	- It can be installed from here https://azure.microsoft.com/en-us/features/storage-explorer/#overview
+	- Add a blob container called 'inbound' under Storage Accounts\Emulator...\
 7. Postman - This is used to test the api
 	- You can either use postman web or use postman desktop
 8. A code editor - Visual studio/Visual studio code
