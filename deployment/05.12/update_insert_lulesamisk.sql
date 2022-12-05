@@ -9,7 +9,7 @@ VALUES
       (1,'heltenig','Guorrasav ållu', 4155),
       (2,'delvisenig','Guorrasav muhtem mudduj',4155),
       (3,'delvisuenig','Iv ållu guorrasa',4155),
-	  (4,'heltuenig','Iv åvvånis guorrasa',4155)
+	  (4,'heltuenig','Iv åvvånis guorrasa',4155),
       (4,'ikkeaktuelt','Iv sidá vásstedit / ij la ájggeguovddelis',4155);
 
 UPDATE assessment.questiontextresources
